@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_140856) do
+ActiveRecord::Schema.define(version: 2021_06_27_145504) do
 
   create_table "accounts", force: :cascade do |t|
     t.boolean "merchant_account", default: false
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 2021_06_27_140856) do
     t.index ["account_id"], name: "index_merchant_accounts_on_account_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "account_id", null: false
+    t.integer "status", default: 0
+    t.decimal "total", precision: 11, scale: 2
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_orders_on_account_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "merchant_account_id", null: false
     t.decimal "price", precision: 11, scale: 2
@@ -38,5 +47,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_140856) do
   end
 
   add_foreign_key "merchant_accounts", "accounts"
+  add_foreign_key "orders", "accounts"
   add_foreign_key "products", "merchant_accounts"
 end
