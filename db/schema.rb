@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_27_145504) do
+ActiveRecord::Schema.define(version: 2021_06_27_150333) do
 
   create_table "accounts", force: :cascade do |t|
     t.boolean "merchant_account", default: false
@@ -27,6 +27,17 @@ ActiveRecord::Schema.define(version: 2021_06_27_145504) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["account_id"], name: "index_merchant_accounts_on_account_id"
+  end
+
+  create_table "ordered_items", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "product_id", null: false
+    t.integer "quantity", default: 1
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_ordered_items_on_order_id"
+    t.index ["product_id"], name: "index_ordered_items_on_product_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -47,6 +58,8 @@ ActiveRecord::Schema.define(version: 2021_06_27_145504) do
   end
 
   add_foreign_key "merchant_accounts", "accounts"
+  add_foreign_key "ordered_items", "orders"
+  add_foreign_key "ordered_items", "products"
   add_foreign_key "orders", "accounts"
   add_foreign_key "products", "merchant_accounts"
 end
