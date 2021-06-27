@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Account.destroy_all
+Account.create!([{merchant_account: false}, {merchant_account: true},{merchant_account: true}, {merchant_account: false}])
+
+p "Created #{Account.count} accounts"
