@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: one
+  balance: 9.99
+  amount_on_hold: 9.99
+  total_sales: 9.99
+  account_name: MyString
+
+two:
+  account: two
+  balance: 9.99
+  amount_on_hold: 9.99
+  total_sales: 9.99
+  account_name: MyString
