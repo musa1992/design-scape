@@ -27,6 +27,14 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul>
+      <ul class="float-right navbar-nav">
+        <li>
+          <%= link_to cart_index_path, class: "position-relative" do %>
+            <%= image_tag "shopping-cart.png", class: "shopping-cart"%>
+            <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2">9<span class="visually-hidden">unread messages</span></span>
+          <% end %>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>
