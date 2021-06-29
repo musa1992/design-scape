@@ -1,0 +1,10 @@
+var cartCounter = document.querySelector("#cart-counter")
+function trackCartCounter(){
+    let items = parseInt(cartCounter.innerText)
+    items += 1
+    cartCounter.innerHTML = items
+    
+}
+
+trackCartCounter();
+
