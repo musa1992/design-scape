@@ -10,7 +10,7 @@
           <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <%= link_to "Dashboard", merchant_index_path, class: "nav-link" %>
+          <%= link_to "Dashboard", merchant_accounts_path, class: "nav-link" %>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,7 +24,7 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <%= link_to "Sell on designscape", new_merchant_account_path, class: "nav-link"%>
         </li>
       </ul>
       <ul class="float-right navbar-nav">
@@ -40,7 +40,7 @@
         <li class="nav-item"><%= link_to "Log out", destroy_user_session_path, method: :delete,class: "nav-link" %></li>
         <% end %>
         <li>
-          <%= link_to cart_index_path, class: "position-relative" do %>
+          <%= link_to cart_path, class: "position-relative" do %>
             <%= image_tag "shopping-cart.png", class: "shopping-cart"%>
             <span id= "cart-counter" class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2">0</span>
           <% end %>

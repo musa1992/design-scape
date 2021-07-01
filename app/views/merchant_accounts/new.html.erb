@@ -1,0 +1,9 @@
+<p>create merchant account here</p>
+
+<%= form_with model: @merchant do |form| %>
+    <div class="form-group">
+        <%= form.label :account_name, "Business name" %>
+        <%= form.text_field :account_name, class: "form-control" %>
+    </div>
+    <%= form.submit "Create account", class: "btn btn-primary" %>
+<% end %>
