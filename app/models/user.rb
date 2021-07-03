@@ -9,5 +9,10 @@ class User < ApplicationRecord
   def create_account
     Account.new({user_id: self.id}).save
   end
+
+  def has_merchant_account?
+    return false if self.account.nil?
+    self.account.merchant_account
+  end
   
 end
