@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one :account
+  has_many :addresses, as: :addressable
   after_create :create_account
 
   def create_account

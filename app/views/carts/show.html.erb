@@ -1,1 +1,5 @@
 <h1>This is the cart all items will be listed here</h1>
+
+<p><%= @order.id%></p>
+<p><%= @order.ordered_items.count%></p>
+<%= link_to "Proceed to checkout", "#" , class: "btn btn-lg btn-success"%>

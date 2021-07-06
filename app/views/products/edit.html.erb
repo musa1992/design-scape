@@ -1,0 +1,7 @@
+<p>Edit the product here !!</p>
+<%= form_with model: @product do |form| %>
+    <%= form.label :price, "Price" %>
+    <%= form.text_field :price%>
+    <%= form.file_field :image%>
+    <%= form.submit "Create" %>
+<% end %>

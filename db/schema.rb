@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_03_073447) do
+ActiveRecord::Schema.define(version: 2021_07_06_164424) do
 
   create_table "accounts", force: :cascade do |t|
     t.boolean "merchant_account", default: false
@@ -46,6 +46,18 @@ ActiveRecord::Schema.define(version: 2021_07_03_073447) do
     t.integer "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "city"
+    t.string "estate"
+    t.string "street"
+    t.string "apartment_number"
+    t.string "addressable_type"
+    t.integer "addressable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
   create_table "merchant_accounts", force: :cascade do |t|
