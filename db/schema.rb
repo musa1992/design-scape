@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_164424) do
+ActiveRecord::Schema.define(version: 2021_07_06_170144) do
 
   create_table "accounts", force: :cascade do |t|
     t.boolean "merchant_account", default: false
@@ -60,6 +60,20 @@ ActiveRecord::Schema.define(version: 2021_07_06_164424) do
     t.index ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable"
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "city_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "estates", force: :cascade do |t|
+    t.string "estate_name"
+    t.integer "city_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["city_id"], name: "index_estates_on_city_id"
+  end
+
   create_table "merchant_accounts", force: :cascade do |t|
     t.integer "account_id", null: false
     t.decimal "balance", precision: 11, scale: 2
@@ -91,6 +105,14 @@ ActiveRecord::Schema.define(version: 2021_07_06_164424) do
     t.index ["account_id"], name: "index_orders_on_account_id"
   end
 
+  create_table "pick_up_stations", force: :cascade do |t|
+    t.string "station_name"
+    t.integer "estate_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["estate_id"], name: "index_pick_up_stations_on_estate_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.integer "merchant_account_id", null: false
     t.decimal "price", precision: 11, scale: 2
@@ -114,9 +136,11 @@ ActiveRecord::Schema.define(version: 2021_07_06_164424) do
   add_foreign_key "accounts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "estates", "cities"
   add_foreign_key "merchant_accounts", "accounts"
   add_foreign_key "ordered_items", "orders"
   add_foreign_key "ordered_items", "products"
   add_foreign_key "orders", "accounts"
+  add_foreign_key "pick_up_stations", "estates"
   add_foreign_key "products", "merchant_accounts"
 end
