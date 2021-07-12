@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_182241) do
+ActiveRecord::Schema.define(version: 2021_07_06_170144) do
 
   create_table "accounts", force: :cascade do |t|
     t.boolean "merchant_account", default: false
@@ -102,9 +102,7 @@ ActiveRecord::Schema.define(version: 2021_07_06_182241) do
     t.decimal "total", precision: 11, scale: 2
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "pick_up_station_id"
     t.index ["account_id"], name: "index_orders_on_account_id"
-    t.index ["pick_up_station_id"], name: "index_orders_on_pick_up_station_id"
   end
 
   create_table "pick_up_stations", force: :cascade do |t|
@@ -143,7 +141,6 @@ ActiveRecord::Schema.define(version: 2021_07_06_182241) do
   add_foreign_key "ordered_items", "orders"
   add_foreign_key "ordered_items", "products"
   add_foreign_key "orders", "accounts"
-  add_foreign_key "orders", "pick_up_stations"
   add_foreign_key "pick_up_stations", "estates"
   add_foreign_key "products", "merchant_accounts"
 end
