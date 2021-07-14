@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_06_170144) do
+ActiveRecord::Schema.define(version: 2021_07_14_205501) do
 
   create_table "accounts", force: :cascade do |t|
     t.boolean "merchant_account", default: false
@@ -110,6 +110,7 @@ ActiveRecord::Schema.define(version: 2021_07_06_170144) do
     t.integer "estate_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "street"
     t.index ["estate_id"], name: "index_pick_up_stations_on_estate_id"
   end
 

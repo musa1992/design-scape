@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
     def show
-        @order = Order.find(5)  
+        @order = Order.find(session[:order_id])  
     end
 
     def add_to_cart
@@ -10,12 +10,10 @@ class CartsController < ApplicationController
             order = Order.find(session[:order_id])
             order.ordered_items.build(product_id: params[:id]).save
         else
-            
-            
             account = current_user.account
-            @order = account.orders.build(pick_up_station_id: 1)
+            @order = account.orders.build()
             if @order.save
-                session[:order_id]
+                session[:order_id] = @order.id
                 @order.ordered_items.build(product_id: params[:id]).save
             end
             
