@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   resources :products
   resources :merchant_accounts
   resources :checkout, only: [:index]
+  resources :addresses
   resource :cart, except: [:create]
 end

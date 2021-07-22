@@ -1,67 +1,34 @@
-<form class="card p-2">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary">Redeem</button>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-8 order-md-1">
-          <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate="">
+<%= form_with model: address, class:"needs-validation" do |form| %>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Valid first name is required.
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="lastName">Last name</label>
-                <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
                 <div class="invalid-feedback">
                   Valid last name is required.
                 </div>
               </div>
             </div>
 
-            <div class="mb-3">
-              <label for="email">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email" class="form-control" id="email" placeholder="you@example.com">
-              <div class="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address">Street</label>
-              <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
-              <div class="invalid-feedback">
-                Please enter your shipping address.
-              </div>
-            </div>
-
-            <div class="mb-3">
-              <label for="address2">Apartment <span class="text-muted">(Optional)</span></label>
-              <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
-            </div>
-
+           
             <div class="row">
               <div class="col-md-5 mb-3">
-                <label for="country">City</label>
-                <select class="custom-select d-block w-100" id="country" required="">
-                  <option value="">Choose...</option>
-                  <option>United States</option>
-                </select>
+                <%= form.label :city, "City"%>
+                
+                <%= form.collection_select :city, cities.order(:city_name), :city_name, :city_name, class: "custom-select d-block w-100" %>
                 <div class="invalid-feedback">
                   Please select a valid country.
                 </div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="state">Estate</label>
-                <select class="custom-select d-block w-100" id="state" required="">
+                <select class="custom-select d-block w-100" id="state" required>
                   <option value="">Choose...</option>
                   <option>California</option>
                 </select>
@@ -69,9 +36,36 @@
                   Please provide a valid state.
                 </div>
               </div>
-              <div class="custom-control custom-checkbox">
+                          </div>
+            <div class="mb-3">
+            <%= form.label :street, "Street"%>
+            <%= form.text_field :street, class: "form-control", placeholder: "Main St"%>
+            <div class="invalid-feedback">
+              Please enter your shipping address.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label :apartment, "Apartment"%>
+            <%= form.text_field :apartment, class: "form-control", placeholder: "Apartment or suite" %>
+        
+          </div>
+            <hr class="mb-4">
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="same-address">
+              <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div>
+            <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="save-info">
               <label class="custom-control-label" for="save-info">Save this information for next time</label>
             </div>
-            </div>
-</form>
+            <hr class="mb-4">
+            <%= render partial: 'shared/delivery', locals: {f: form} %>
+            
+            <hr class="mb-4">
+            <%= form.submit "Proceed to next step", class: "btn btn-primary btn-lg"%>
+
+           
+           
+    
+<% end %>
