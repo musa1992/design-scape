@@ -21,16 +21,15 @@
               <div class="col-md-5 mb-3">
                 <%= form.label :city, "City"%>
                 
-                <%= form.collection_select :city, cities.order(:city_name), :city_name, :city_name, class: "custom-select d-block w-100" %>
+                <%= form.collection_select :city, cities.order(:city_name), :city_name, :city_name, class: "custom-select d-block w-100", id: "my_city" %>
                 <div class="invalid-feedback">
                   Please select a valid country.
                 </div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="state">Estate</label>
-                <select class="custom-select d-block w-100" id="state" required>
-                  <option value="">Choose...</option>
-                  <option>California</option>
+                <select class="custom-select d-block w-100" id="estate" required>
+                  
                 </select>
                 <div class="invalid-feedback">
                   Please provide a valid state.
