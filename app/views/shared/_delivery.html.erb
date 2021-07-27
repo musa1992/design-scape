@@ -2,8 +2,21 @@
     <h2>Delivery method</h2>
     
     <p>How do you want your order delivered ?</p>
-    <%= f.radio_button :delivery_option, "Pickup Station"%>
-    <%= f.label :delivery_option_station, "Pickup Station"%>
-    <%= f.radio_button :delivery_option, "Home"%>
-    <%= f.label :delivery_option_home, "Deliver to your home or office"%>
+    <div class="delivery-options ">
+        <div class="station">
+            <%= f.radio_button :delivery_option, "Pickup Station"%>
+            <%= f.label :delivery_option_station, "Pickup Station"%>
+            <button class="btn btn-success " id="trigger-modal">Select pick up station</button>
+            <div class="modal" id="myModal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p>Some text in modal</p>
+                </div>
+            </div>
+        </div>
+        <div class="home-address">
+            <%= f.radio_button :delivery_option, "Home"%>
+            <%= f.label :delivery_option_home, "Deliver to your home or office"%>
+        </div>
+    </div>
 </div>

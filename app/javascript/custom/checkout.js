@@ -4,6 +4,9 @@ document.addEventListener("turbolinks:load", () => {
         }
     var estate_select = document.getElementById("estate")
     var city = document.getElementById("address_city")
+    var modal = document.getElementById("myModal")
+    var triggerModal = document.getElementById("trigger-modal") 
+    var span = document.getElementsByClassName("close")[0]
 
     function getEstate(town){
         var xhttp = new XMLHttpRequest();
@@ -42,8 +45,19 @@ document.addEventListener("turbolinks:load", () => {
         })
     }
 
-    
+    triggerModal.onclick = function(){
+        modal.style.display = "block";
+    }
 
+    span.onclick = function(){
+        modal.style.display ="none";
+    }
+
+    window.onclick = function(event){
+        if(event.target == modal){
+            modal.style.display = "none";
+        }
+    }
     
 
     
