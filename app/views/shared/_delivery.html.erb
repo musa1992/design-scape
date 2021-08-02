@@ -10,7 +10,25 @@
             <div class="modal" id="myModal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <p>Some text in modal</p>
+                <div class="row">
+              <div class="col-md-5 mb-3">
+                <%= f.label :city, "City"%>
+                
+                <%= f.collection_select :city_id, cities.order(:city_name), :city_name, :city_name, class: "custom-select d-block w-100", id: "delivery-city" %>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="state">Estate</label>
+                <select class="custom-select d-block w-100" id="delivery-estate" name= "estate" required>
+                  
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+                          </div>
                 </div>
             </div>
         </div>

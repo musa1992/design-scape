@@ -21,7 +21,7 @@
               <div class="col-md-5 mb-3">
                 <%= form.label :city, "City"%>
                 
-                <%= form.collection_select :city, cities.order(:city_name), :city_name, :city_name, class: "custom-select d-block w-100", id: "my_city" %>
+                <%= form.collection_select :city, cities.order(:city_name), :city_name ,:city_name, class: "custom-select d-block w-100" %>
                 <div class="invalid-feedback">
                   Please select a valid country.
                 </div>
@@ -35,7 +35,7 @@
                   Please provide a valid state.
                 </div>
               </div>
-                          </div>
+            </div>
             <div class="mb-3">
             <%= form.label :street, "Street"%>
             <%= form.text_field :street, class: "form-control", placeholder: "Main St"%>
@@ -59,7 +59,7 @@
               <label class="custom-control-label" for="save-info">Save this information for next time</label>
             </div>
             <hr class="mb-4">
-            <%= render partial: 'shared/delivery', locals: {f: form} %>
+            <%= render partial: 'shared/delivery', locals: {f: form, cities: @cities} %>
             
             <hr class="mb-4">
             <%= form.submit "Proceed to next step", class: "btn btn-primary btn-lg"%>
