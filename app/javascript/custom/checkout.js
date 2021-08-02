@@ -4,7 +4,7 @@ document.addEventListener("turbolinks:load", () => {
         }
     var estateSelect = document.getElementById("estate")
     var deliveryEstate = document.getElementById("delivery-estate")
-
+    var stationSelect = document.getElementById("pick-up-station")
     var city = document.getElementById("address_city")
     var deliveryCity = document.getElementById("address_city_id")
     var modal = document.getElementById("myModal")
@@ -24,7 +24,22 @@ document.addEventListener("turbolinks:load", () => {
         };
         xhttp.open("GET", "/get_estate?city_name="+ town, true)
         xhttp.send();
-    }  
+    } 
+    
+    function getPickUpStation(estate){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function(){
+            if(this.readyState ==4 && this.status == 200){
+                var station = JSON.parse(this.responseText).stations
+                for (let i = 0; i < station.length; i++){
+                    var radio = '<input type= "radio" name= "stations">'
+                    stationSelect.insertAdjacentHTML('beforeend',radio)
+                }
+            }
+        };
+        xhttp.open("GET", "/get_station?estate_name="+ estate, true)
+        xhttp.send();
+    }
     function setEstateOnLoad(city,estate){
             var selected_city = city.options[city.selectedIndex].text
             getEstate(selected_city,estate)   
@@ -61,6 +76,14 @@ document.addEventListener("turbolinks:load", () => {
             removeChildNodes(deliveryEstate)
             getEstate(chosen_city,deliveryEstate);
             
+        })
+    }
+
+    if(deliveryEstate){
+        deliveryEstate.addEventListener('click', function(e){
+            var estate = this.options[this.selectedIndex].text
+            removeChildNodes(stationSelect)
+            getPickUpStation(estate)
         })
     }
 

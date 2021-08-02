@@ -14,4 +14,14 @@ class CheckoutController < ApplicationController
         end
         render json: {estates: @estate_name}
     end
+
+    def station
+        estate = Estate.find_by(estate_name: params[:estate_name])
+        @stations = estate.pick_up_stations
+        @station_name = []
+        @stations.each do |station|
+            @station_name << station.station_name
+        end
+        render json: {stations: @station_name}
+    end
 end
