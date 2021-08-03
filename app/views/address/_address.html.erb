@@ -1,4 +1,4 @@
-<%= form_with model: address, class:"needs-validation" do |form| %>
+<%= form_with model: address, :html => {:id => "checkout-form"} do |form| %>
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
@@ -59,10 +59,10 @@
               <label class="custom-control-label" for="save-info">Save this information for next time</label>
             </div>
             <hr class="mb-4">
-            <%= render partial: 'shared/delivery', locals: {f: form, cities: @cities} %>
+            <%= render partial: 'shared/delivery', locals: {form: form, cities: @cities} %>
             
             <hr class="mb-4">
-            <%= form.submit "Proceed to next step", class: "btn btn-primary btn-lg"%>
+          <button class= "btn btn-primary btn-lg" onclick="checkOutFormSubmit()">Proceed to next step</button>
 
            
            

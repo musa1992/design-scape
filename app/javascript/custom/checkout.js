@@ -2,6 +2,7 @@ document.addEventListener("turbolinks:load", () => {
     if (!Turbolinks) {
         location.reload();
         }
+    var checkOutForm = document.getElementById("checkout-form")
     var estateSelect = document.getElementById("estate")
     var deliveryEstate = document.getElementById("delivery-estate")
     var stationSelect = document.getElementById("pick-up-station")
@@ -32,18 +33,23 @@ document.addEventListener("turbolinks:load", () => {
             if(this.readyState ==4 && this.status == 200){
                 
                 var station = JSON.parse(this.responseText).stations
+                
                 for (let i = 0; i < station.length; i++){
+                    var station_name = station[i].name
+                    var station_street = station[i].street
                     var id = "stations" + i.toString();
                     var div = document.createElement('div')
                     div.className = "form-check"
                     var radio =document.createElement('input')
                     radio.className = "form-check-input"
                     radio.type = "radio"
+                    radio.value = station_name
+                    radio.name = "delivery_station"
                     radio.id = id
                     var label = document.createElement('label')
                     label.className = "form-check-label"
                     label.setAttribute("for", id)
-                    label.innerHTML = "Moses"
+                    label.innerHTML = station_name
                     div.appendChild(radio)
                     div.appendChild(label)
                     stationSelect.appendChild(div)
@@ -62,6 +68,10 @@ document.addEventListener("turbolinks:load", () => {
         while(parent.firstChild){
             parent.removeChild(parent.firstChild)
         }
+    }
+
+    function checkOutFormSubmit(){
+        checkOutForm.submit();
     }
 
     if (city){
@@ -99,6 +109,8 @@ document.addEventListener("turbolinks:load", () => {
             getPickUpStation(estate)
         })
     }
+
+    
 
 
 

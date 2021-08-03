@@ -4,24 +4,24 @@
     <p>How do you want your order delivered ?</p>
     <div class="delivery-options ">
         <div class="station">
-            <%= f.radio_button :delivery_option, "Pickup Station"%>
-            <%= f.label :delivery_option_station, "Pickup Station"%>
+            <%= form.radio_button :delivery_option, "Pickup Station"%>
+            <%= form.label :delivery_option_station, "Pickup Station"%>
             <button class="btn btn-success " id="trigger-modal">Select pick up station</button>
             <div class="modal" id="myModal">
                 <div class="modal-content">
                     <span class="close">&times;</span>
                 <div class="row">
               <div class="col-md-5 mb-3">
-                <%= f.label :city, "City"%>
+                <%= form.label :city, "City"%>
                 
-                <%= f.collection_select :city_id, cities.order(:city_name), :city_name, :city_name, class: "custom-select d-block w-100", id: "delivery-city" %>
+                <%= form.collection_select :city_id, cities.order(:city_name), :city_name, :city_name, class: "custom-select d-block w-100", id: "delivery-city" %>
                 <div class="invalid-feedback">
                   Please select a valid country.
                 </div>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="state">Estate</label>
-                <select class="custom-select d-block w-100" id="delivery-estate" name= "estate" required>
+                <select class="custom-select d-block w-100" id="delivery-estate" name= "delivery-estate" required>
                   
                 </select>
                 <div class="invalid-feedback">
@@ -36,8 +36,8 @@
             </div>
         </div>
         <div class="home-address">
-            <%= f.radio_button :delivery_option, "Home"%>
-            <%= f.label :delivery_option_home, "Deliver to your home or office"%>
+            <%= form.radio_button :delivery_option, "Home"%>
+            <%= form.label :delivery_option_home, "Deliver to your home or office"%>
         </div>
     </div>
 </div>
