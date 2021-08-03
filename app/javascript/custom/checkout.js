@@ -30,10 +30,23 @@ document.addEventListener("turbolinks:load", () => {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function(){
             if(this.readyState ==4 && this.status == 200){
+                
                 var station = JSON.parse(this.responseText).stations
                 for (let i = 0; i < station.length; i++){
-                    var radio = '<input type= "radio" name= "stations">'
-                    stationSelect.insertAdjacentHTML('beforeend',radio)
+                    var id = "stations" + i.toString();
+                    var div = document.createElement('div')
+                    div.className = "form-check"
+                    var radio =document.createElement('input')
+                    radio.className = "form-check-input"
+                    radio.type = "radio"
+                    radio.id = id
+                    var label = document.createElement('label')
+                    label.className = "form-check-label"
+                    label.setAttribute("for", id)
+                    label.innerHTML = "Moses"
+                    div.appendChild(radio)
+                    div.appendChild(label)
+                    stationSelect.appendChild(div)
                 }
             }
         };

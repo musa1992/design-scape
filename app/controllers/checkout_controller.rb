@@ -20,7 +20,7 @@ class CheckoutController < ApplicationController
         @stations = estate.pick_up_stations
         @station_name = []
         @stations.each do |station|
-            @station_name << station.station_name
+            @station_name << {name: station.station_name, street: station.street, estate: estate.estate_name}
         end
         render json: {stations: @station_name}
     end
